@@ -6,4 +6,5 @@ export type Activity = {
   startsAt: string
   locationName: string
   interestedFriends: string[]
+  position: [number, number]
 }
