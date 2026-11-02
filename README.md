@@ -20,7 +20,7 @@ This is especially useful for small moments that are easy to miss, but still mak
 
 ## Current prototype
 
-This project is currently a prototype and concept exploration, not a fully implemented application.
+The Figma prototype shows the intended design. A first coded version (React, TypeScript, Leaflet) already lets you see activities as pins on a map, tap a pin to see details, and mark yourself as interested. It uses sample data and nothing is saved yet
 
 Figma prototype (v2, in progress):
 https://www.figma.com/proto/nKmWdR5u0rOxBrIDW44xiB/Spontaneous-Plans-v2?node-id=0-1&t=aQ4wGqX8jPALNtkt-1
@@ -30,3 +30,12 @@ https://www.figma.com/proto/nKmWdR5u0rOxBrIDW44xiB/Spontaneous-Plans-v2?node-id=
 I tested the clickable prototype with 3 people. They were able to navigate the flow and create or open an activity without assistance. A few participants wanted to suggest more creative activities, which led me to explore a "Something else ✨" option next.
 
 This was an early test with a small group, so I treat the results as an initial signal rather than proof.
+
+## Technology
+React, TypeScript, Vite, Leaflet with OpenStreetMap map tiles.
+
+## Run it locally
+//you need Node.js installed
+cd app
+npm install
+npm run dev
