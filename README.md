@@ -11,12 +11,9 @@ Spontaneous Plans explores a different approach: a shared map where friends can 
 ## Why this matters
 
 The app is designed for casual, informal plans between friends:
-- spontaneous activities
-- low commitment
-- shared availability
-- easy discovery of nearby opportunities
-
-This is especially useful for small moments that are easy to miss, but still make life more social and enjoyable.
+- spontaneous, low-commitment activities
+- ideas shared on a map instead of group-chat messages
+- a simple way to see which friends might want to join
 
 ## Current prototype
 
@@ -27,7 +24,7 @@ https://www.figma.com/proto/nKmWdR5u0rOxBrIDW44xiB/Spontaneous-Plans-v2?node-id=
 
 ## What I’ve tested so far
 
-I tested the clickable prototype with 3 people. They were able to navigate the flow and create or open an activity without assistance. A few participants wanted to suggest more creative activities, which led me to explore a "Something else ✨" option next.
+I tested the clickable prototype with 3 people. They were able to navigate the flow and create or open an activity without assistance. 1 of the 3 wanted to suggest more creative activities, which led me to explore a "Something else ✨" option next.
 
 This was an early test with a small group, so I treat the results as an initial signal rather than proof.
 
@@ -35,7 +32,27 @@ This was an early test with a small group, so I treat the results as an initial 
 React, TypeScript, Vite, Leaflet with OpenStreetMap map tiles.
 
 ## Run it locally
-//you need Node.js installed
-cd app
+
+Requires [Node.js](https://nodejs.org).
+
+```bash
+git clone git@github.com:Malekkchaou01/spontaneous-plans.git
+cd spontaneous-plans/app
 npm install
 npm run dev
+```
+
+Then open the address printed in the terminal (usually http://localhost:5173).
+
+### Current state of the coded version
+
+Sample data only. Nothing is saved yet.
+
+![Map with activity pins](docs/images/app/01-map-with-pins.png)
+*Friends' activities as pins on a map.*
+
+![Activity details card](docs/images/app/02-activity-card.png)
+*Tapping a pin shows who suggested the plan, when, where and who is interested.*
+
+![Marked as interested](docs/images/app/03-interested.png)
+*Joining is a light "I'm interested" toggle, not a binding commitment.*
