@@ -2,9 +2,18 @@ import type { Activity } from '../types/activity'
 
 type ActivityCardProps = {
   activity: Activity
+  currentUser: string
+  onToggleInterest: (id: string) => void
 }
 
-export default function ActivityCard({ activity }: ActivityCardProps) {
+export default function ActivityCard({
+  activity,
+  currentUser,
+  onToggleInterest,
+}: ActivityCardProps) {
+  const isHost = activity.host === currentUser
+  const isInterested = activity.interestedFriends.includes(currentUser)
+
   return (
     <div
       style={{
@@ -26,6 +35,14 @@ export default function ActivityCard({ activity }: ActivityCardProps) {
           ? `Interested: ${activity.interestedFriends.join(', ')}`
           : 'Nobody has joined yet'}
       </p>
+      {!isHost && (
+        <>
+          <button onClick={() => onToggleInterest(activity.id)}>
+            {isInterested ? "You're interested ✓" : "I'm interested"}
+          </button>
+          <p>No pressure. Plans can stay spontaneous.</p>
+        </>
+      )}
     </div>
   )
 }
