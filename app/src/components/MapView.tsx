@@ -1,11 +1,13 @@
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 import { divIcon } from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import type { Activity } from '../types/activity'
 
-type MapViewProps = {
-  activities: Activity[]
-}
+  type MapViewProps = {
+    activities: Activity[]
+    onSelect: (id: string) => void
+  }
+
 
 function emojiIcon(emoji: string) {
   return divIcon({
@@ -16,7 +18,7 @@ function emojiIcon(emoji: string) {
   })
 }
 
-export default function MapView({ activities }: MapViewProps) {
+export default function MapView({ activities, onSelect }: MapViewProps) {
   return (
     <MapContainer
       center={[51.2277, 6.7735]}
@@ -28,19 +30,12 @@ export default function MapView({ activities }: MapViewProps) {
         url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       {activities.map((activity) => (
-        <Marker
-          key={activity.id}
-          position={activity.position}
-          icon={emojiIcon(activity.emoji)}
-        >
-          <Popup>
-            <strong>{activity.title}</strong>
-            <br />
-            {activity.host} · {activity.startsAt}
-            <br />
-            {activity.interestedFriends.length} interested
-          </Popup>
-        </Marker>
+          <Marker
+    key={activity.id}
+    position={activity.position}
+    icon={emojiIcon(activity.emoji)}
+    eventHandlers={{ click: () => onSelect(activity.id) }}
+  />
       ))}
     </MapContainer>
   )
