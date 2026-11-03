@@ -56,3 +56,6 @@ Sample data only. Nothing is saved yet.
 
 ![Marked as interested](docs/images/app/03-interested.png)
 *Joining is a light "I'm interested" toggle, not a binding commitment.*
+
+![Creating an activity](docs/images/app/04-create-activity.png)
+*Creating a plan: the place is chosen by tapping the map, so pins mark activity spots.*
