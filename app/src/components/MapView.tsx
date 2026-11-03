@@ -14,10 +14,19 @@ type MapViewProps = {
 
 function emojiIcon(emoji: string) {
   return divIcon({
-    html: `<div style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:24px;background:white;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,0.25);">${emoji}</div>`,
+    html: `<div style="width:46px;height:46px;display:flex;align-items:center;justify-content:center;font-size:26px;background:white;border:2.5px solid #172b24;border-radius:50%;box-shadow:0 3px 0 rgba(0,0,0,0.15);">${emoji}</div>`,
     className: '',
-    iconSize: [44, 44],
-    iconAnchor: [22, 22],
+    iconSize: [46, 46],
+    iconAnchor: [23, 23],
+  })
+}
+
+function pinIcon() {
+  return divIcon({
+    html: `<div style="font-size:34px;line-height:1;filter:drop-shadow(0 2px 2px rgba(0,0,0,0.3));">📍</div>`,
+    className: '',
+    iconSize: [34, 34],
+    iconAnchor: [17, 34],
   })
 }
 
@@ -56,7 +65,7 @@ export default function MapView({
         />
       ))}
       {pickedPosition && (
-        <Marker position={pickedPosition} icon={emojiIcon('📍')} />
+  <Marker position={pickedPosition} icon={pinIcon()} />
       )}
     </MapContainer>
   )

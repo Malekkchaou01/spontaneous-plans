@@ -28,8 +28,8 @@ export default function CreateActivityForm({
           <button
             key={category.label}
             onClick={() => setCategoryIndex(index)}
-            style={{ fontWeight: index === categoryIndex ? 'bold' : 'normal' }}
-          >
+            className={index === categoryIndex ? 'chip selected' : 'chip'}
+            >
             {category.emoji} {category.label}
           </button>
         ))}

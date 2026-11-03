@@ -57,7 +57,7 @@ function App() {
 
   return (
     <div>
-      <h1>Spontaneous Plans</h1>
+      <h1>Spontaneous Plans✨</h1>
       <MapView
         activities={items}
         onSelect={setSelectedId}
@@ -78,6 +78,7 @@ function App() {
               currentUser={CURRENT_USER}
               onToggleInterest={toggleInterest}
               onRemove={removeActivity}
+              //key={selected.id}
             />
           ) : (
             <p>Tap a pin to see the plan.</p>
