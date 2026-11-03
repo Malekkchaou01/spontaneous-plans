@@ -2,11 +2,13 @@ import { useState } from 'react'
 import { categories } from '../data/categories'
 
 type CreateActivityFormProps = {
+  hasLocation: boolean
   onCreate: (data: { title: string; emoji: string; startsAt: string }) => void
   onCancel: () => void
 }
 
 export default function CreateActivityForm({
+  hasLocation,
   onCreate,
   onCancel,
 }: CreateActivityFormProps) {
@@ -36,7 +38,10 @@ export default function CreateActivityForm({
         When?{' '}
         <input type="time" value={time} onChange={(e) => setTime(e.target.value)} />
       </p>
-      <button onClick={handleShare}>Share activity</button>{' '}
+      <p>{hasLocation ? 'Place chosen 📍' : 'Tap the map to choose where.'}</p>
+      <button onClick={handleShare} disabled={!hasLocation}>
+        Share activity
+      </button>{' '}
       <button onClick={onCancel}>Cancel</button>
       <p>An open invitation. No pressure to join.</p>
     </div>

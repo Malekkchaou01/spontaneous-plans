@@ -1,13 +1,16 @@
-import { MapContainer, TileLayer, Marker } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet'
 import { divIcon } from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import type { Activity } from '../types/activity'
 
-  type MapViewProps = {
-    activities: Activity[]
-    onSelect: (id: string) => void
-  }
+type Position = [number, number]
 
+type MapViewProps = {
+  activities: Activity[]
+  onSelect: (id: string) => void
+  pickedPosition: Position | null
+  onPickLocation?: (position: Position) => void
+}
 
 function emojiIcon(emoji: string) {
   return divIcon({
@@ -18,7 +21,21 @@ function emojiIcon(emoji: string) {
   })
 }
 
-export default function MapView({ activities, onSelect }: MapViewProps) {
+function ClickHandler({ onPick }: { onPick: (position: Position) => void }) {
+  useMapEvents({
+    click(e) {
+      onPick([e.latlng.lat, e.latlng.lng])
+    },
+  })
+  return null
+}
+
+export default function MapView({
+  activities,
+  onSelect,
+  pickedPosition,
+  onPickLocation,
+}: MapViewProps) {
   return (
     <MapContainer
       center={[51.2277, 6.7735]}
@@ -29,14 +46,18 @@ export default function MapView({ activities, onSelect }: MapViewProps) {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
+      {onPickLocation && <ClickHandler onPick={onPickLocation} />}
       {activities.map((activity) => (
-          <Marker
-    key={activity.id}
-    position={activity.position}
-    icon={emojiIcon(activity.emoji)}
-    eventHandlers={{ click: () => onSelect(activity.id) }}
-  />
+        <Marker
+          key={activity.id}
+          position={activity.position}
+          icon={emojiIcon(activity.emoji)}
+          eventHandlers={{ click: () => onSelect(activity.id) }}
+        />
       ))}
+      {pickedPosition && (
+        <Marker position={pickedPosition} icon={emojiIcon('📍')} />
+      )}
     </MapContainer>
   )
 }
