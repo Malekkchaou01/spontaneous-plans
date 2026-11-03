@@ -28,6 +28,10 @@ function App() {
       }),
     )
   }
+  function removeActivity(id: string) {
+  setItems((current) => current.filter((a) => a.id !== id))
+  setSelectedId(null)
+}
 
   function closeForm() {
     setShowForm(false)
@@ -73,6 +77,7 @@ function App() {
               activity={selected}
               currentUser={CURRENT_USER}
               onToggleInterest={toggleInterest}
+              onRemove={removeActivity}
             />
           ) : (
             <p>Tap a pin to see the plan.</p>

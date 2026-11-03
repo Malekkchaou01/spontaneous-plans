@@ -4,12 +4,14 @@ type ActivityCardProps = {
   activity: Activity
   currentUser: string
   onToggleInterest: (id: string) => void
+  onRemove: (id: string) => void
 }
 
 export default function ActivityCard({
   activity,
   currentUser,
   onToggleInterest,
+  onRemove,
 }: ActivityCardProps) {
   const isHost = activity.host === currentUser
   const isInterested = activity.interestedFriends.includes(currentUser)
@@ -35,7 +37,12 @@ export default function ActivityCard({
           ? `Interested: ${activity.interestedFriends.join(', ')}`
           : 'Nobody has joined yet'}
       </p>
-      {!isHost && (
+
+      {isHost ? (
+        <button onClick={() => onRemove(activity.id)}>
+          Remove my activity
+        </button>
+      ) : (
         <>
           <button onClick={() => onToggleInterest(activity.id)}>
             {isInterested ? "You're interested ✓" : "I'm interested"}
