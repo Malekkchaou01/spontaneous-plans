@@ -1,4 +1,5 @@
 import type { Activity } from '../types/activity'
+import { formatTime } from '../utils/time'
 
 type ActivityCardProps = {
   activity: Activity
@@ -29,7 +30,7 @@ export default function ActivityCard({
         {activity.emoji} {activity.title}
       </h2>
       <p>
-        Suggested by {activity.host} · {activity.startsAt}
+        Suggested by {activity.host} · {formatTime(activity.startsAt)}
       </p>
       <p>{activity.locationName}</p>
       <p>

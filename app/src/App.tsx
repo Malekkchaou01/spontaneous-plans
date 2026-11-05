@@ -1,9 +1,11 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { activities as initialActivities } from './data/activities'
+import { EXPIRY_MS } from './config'
 import type { Activity } from './types/activity'
 import MapView from './components/MapView'
 import ActivityCard from './components/ActivityCard'
 import CreateActivityForm from './components/CreateActivityForm'
+import { timeTodayToTimestamp } from './utils/time'
 
 const CURRENT_USER = 'You'
 
@@ -12,7 +14,15 @@ function App() {
   const [selectedId, setSelectedId] = useState<string | null>(null)
   const [showForm, setShowForm] = useState(false)
   const [pickedPosition, setPickedPosition] = useState<[number, number] | null>(null)
-  const selected = items.find((a) => a.id === selectedId) ?? null
+  const [now, setNow] = useState(Date.now())
+
+  useEffect(() => {
+    const timer = setInterval(() => setNow(Date.now()), 30 * 1000)
+    return () => clearInterval(timer)
+  }, [])
+
+  const visibleItems = items.filter((a) => now < a.startsAt + EXPIRY_MS)
+  const selected = visibleItems.find((a) => a.id === selectedId) ?? null
 
   function toggleInterest(id: string) {
     setItems((current) =>
@@ -28,10 +38,11 @@ function App() {
       }),
     )
   }
+
   function removeActivity(id: string) {
-  setItems((current) => current.filter((a) => a.id !== id))
-  setSelectedId(null)
-}
+    setItems((current) => current.filter((a) => a.id !== id))
+    setSelectedId(null)
+  }
 
   function closeForm() {
     setShowForm(false)
@@ -45,8 +56,7 @@ function App() {
       title: data.title,
       emoji: data.emoji,
       host: CURRENT_USER,
-      startsAt: data.startsAt,
-      locationName: 'Chosen on the map',
+      startsAt: timeTodayToTimestamp(data.startsAt),      locationName: 'Chosen on the map',
       interestedFriends: [],
       position: pickedPosition,
     }
@@ -57,9 +67,9 @@ function App() {
 
   return (
     <div>
-      <h1>Spontaneous Plans✨</h1>
+      <h1>Spontaneous Plans ✨</h1>
       <MapView
-        activities={items}
+        activities={visibleItems}
         onSelect={setSelectedId}
         pickedPosition={pickedPosition}
         onPickLocation={showForm ? setPickedPosition : undefined}
@@ -78,7 +88,6 @@ function App() {
               currentUser={CURRENT_USER}
               onToggleInterest={toggleInterest}
               onRemove={removeActivity}
-              //key={selected.id}
             />
           ) : (
             <p>Tap a pin to see the plan.</p>

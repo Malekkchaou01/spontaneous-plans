@@ -1,0 +1,1 @@
+export const EXPIRY_MS = 1 * 60 * 1000 // 4 hours

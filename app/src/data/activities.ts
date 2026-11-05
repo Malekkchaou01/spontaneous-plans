@@ -1,12 +1,14 @@
 import type { Activity } from '../types/activity'
 
+const minutesFromNow = (minutes: number) => Date.now() + minutes * 60 * 1000
+
 export const activities: Activity[] = [
   {
     id: '1',
     title: 'Pizza later',
     emoji: '🍕',
     host: 'Maya',
-    startsAt: '3:00 pm',
+    startsAt: minutesFromNow(60),
     locationName: 'Silver Lake',
     interestedFriends: ['Adam', 'Lina'],
     position: [51.2295, 6.776],
@@ -16,7 +18,7 @@ export const activities: Activity[] = [
     title: 'A little walk',
     emoji: '🚶',
     host: 'Sam',
-    startsAt: '4:30 pm',
+    startsAt: minutesFromNow(-210),
     locationName: 'Silver Lake Park',
     interestedFriends: [],
     position: [51.225, 6.77],
@@ -26,7 +28,7 @@ export const activities: Activity[] = [
     title: 'Coffee?',
     emoji: '☕',
     host: 'You',
-    startsAt: '3:00 pm',
+    startsAt: minutesFromNow(20),
     locationName: 'Effie St',
     interestedFriends: ['Maya'],
     position: [51.231, 6.782],
