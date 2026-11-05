@@ -1,7 +1,7 @@
 :root {
   --bg: #f7f8fc;
   --mint-deep: #fff5e4;
-  --accent: #ffaf4d;
+  --accent: #ffbc36e6;
   --ink: #172b24;
   --card: #ffffff;
   --radius: 28px;
@@ -83,7 +83,7 @@ button {
 button:hover:not(:disabled) {
   background: var(--accent);
   border-color: var(--accent);
-  color: #fff;
+  color: var(--ink);
   transform: scale(1.06);
 }
 
@@ -99,7 +99,7 @@ button:disabled {
 .chip.selected {
   background: var(--accent);
   border-color: var(--accent);
-  color: #fff;
+  color: var(--ink);
 }
 
 input[type='time'] {
