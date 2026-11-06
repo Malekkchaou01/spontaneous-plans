@@ -8,9 +8,20 @@ import CreateActivityForm from './components/CreateActivityForm'
 import { timeToTimestamp } from './utils/time'
 
 const CURRENT_USER = 'You'
+const STORAGE_KEY = 'spontaneous-plans-activities'
+
+function loadActivities(): Activity[] {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY)
+    if (saved) return JSON.parse(saved) as Activity[]
+  } catch {
+    // broken or unavailable storage: fall back to the sample data
+  }
+  return initialActivities
+}
 
 function App() {
-  const [items, setItems] = useState<Activity[]>(initialActivities)
+  const [items, setItems] = useState<Activity[]>(loadActivities)
   const [selectedId, setSelectedId] = useState<string | null>(null)
   const [showForm, setShowForm] = useState(false)
   const [pickedPosition, setPickedPosition] = useState<[number, number] | null>(null)
@@ -20,6 +31,10 @@ function App() {
     const timer = setInterval(() => setNow(Date.now()), 30 * 1000)
     return () => clearInterval(timer)
   }, [])
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(items))
+  }, [items])
 
   const visibleItems = items.filter((a) => now < a.startsAt + EXPIRY_MS)
   const selected = visibleItems.find((a) => a.id === selectedId) ?? null

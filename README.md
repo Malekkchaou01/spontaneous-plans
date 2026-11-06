@@ -46,7 +46,7 @@ Then open the address printed in the terminal (usually http://localhost:5173).
 
 ### Current state of the coded version
 
-Sample data only. Nothing is saved yet.
+Sample data only. data is stored locally in the browser only.
 
 ![Map with activity pins](docs/images/app/01-map-with-pins.png)
 *Friends' activities as pins on a map.*
