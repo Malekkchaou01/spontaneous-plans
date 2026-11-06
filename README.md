@@ -28,6 +28,21 @@ I tested the clickable prototype with 3 people. They were able to navigate the f
 
 This was an early test with a small group, so I treat the results as an initial signal rather than proof.
 
+## Design decisions & open questions
+
+**Decisions**
+- Pins show activities at approximate places, not people's live locations. The place is chosen by tapping the map.
+- Plans are temporary: a pin disappears 4 hours after its start time. If someone picks a time that has already passed, it counts as tomorrow. This is only enforced in the browser for now.
+- Joining is a light "I'm interested" toggle, not a binding RSVP, to keep plans low-pressure.
+- Only the host can remove an activity.
+- Data is saved in the browser (localStorage), so it exists on one device only. Sharing plans between friends needs a backend.
+
+**Open questions**
+- Is a "Something else ✨" option (custom activity name and emoji) worth adding? I haven't tested it yet.
+- Is the "Out there! ✨" confirmation after sharing noticeable enough? One tester only saw it after I pointed it out.
+- One tester asked for a "nearby" filter. I'm not planning it for now: it would need location access, and a small friends-only map may not need it.
+- Should a user be limited to one active activity at a time? Planned, but not tested.
+
 ## Technology
 React, TypeScript, Vite, Leaflet with OpenStreetMap map tiles.
 
@@ -59,3 +74,6 @@ Sample data only. data is stored locally in the browser only.
 
 ![Creating an activity](docs/images/app/04-create-activity.png)
 *Creating a plan: the place is chosen by tapping the map, so pins mark activity spots.*
+
+![An activity I shared](docs/images/app/05-my-activity.png)
+*An activity I shared: as the host I can remove it, and it disappears 4 hours after its start time.*
