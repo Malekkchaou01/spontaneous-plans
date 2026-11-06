@@ -3,9 +3,8 @@ export type Activity = {
   title: string
   emoji: string
   host: string
-  startsAt: string
+  startsAt: number
   locationName: string
   interestedFriends: string[]
   position: [number, number]
-  createdAt: number
 }

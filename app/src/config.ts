@@ -1,1 +1,1 @@
-export const EXPIRY_MS = 1 * 60 * 1000 // 4 hours
+export const EXPIRY_MS = 4 * 60 * 60 * 1000 // 4 hours

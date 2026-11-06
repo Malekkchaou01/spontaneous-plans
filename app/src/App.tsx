@@ -5,7 +5,7 @@ import type { Activity } from './types/activity'
 import MapView from './components/MapView'
 import ActivityCard from './components/ActivityCard'
 import CreateActivityForm from './components/CreateActivityForm'
-import { timeTodayToTimestamp } from './utils/time'
+import { timeToTimestamp } from './utils/time'
 
 const CURRENT_USER = 'You'
 
@@ -56,7 +56,8 @@ function App() {
       title: data.title,
       emoji: data.emoji,
       host: CURRENT_USER,
-      startsAt: timeTodayToTimestamp(data.startsAt),      locationName: 'Chosen on the map',
+      startsAt: timeToTimestamp(data.startsAt),
+      locationName: 'Chosen on the map',
       interestedFriends: [],
       position: pickedPosition,
     }
