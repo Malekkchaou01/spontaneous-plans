@@ -26,6 +26,7 @@ function App() {
   const [showForm, setShowForm] = useState(false)
   const [pickedPosition, setPickedPosition] = useState<[number, number] | null>(null)
   const [now, setNow] = useState(Date.now())
+  const [toastId, setToastId] = useState<string | null>(null)
 
   useEffect(() => {
     const timer = setInterval(() => setNow(Date.now()), 30 * 1000)
@@ -35,6 +36,12 @@ function App() {
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(items))
   }, [items])
+
+  useEffect(() => {
+  if (!toastId) return
+  const timer = setTimeout(() => setToastId(null), 5000)
+  return () => clearTimeout(timer)
+  }, [toastId])
 
   const visibleItems = items.filter((a) => now < a.startsAt + EXPIRY_MS)
   const selected = visibleItems.find((a) => a.id === selectedId) ?? null
@@ -58,6 +65,10 @@ function App() {
     setItems((current) => current.filter((a) => a.id !== id))
     setSelectedId(null)
   }
+  function undoShare() {
+  if (toastId) removeActivity(toastId)
+  setToastId(null)
+  }
 
   function closeForm() {
     setShowForm(false)
@@ -77,6 +88,7 @@ function App() {
       position: pickedPosition,
     }
     setItems((current) => [...current, newActivity])
+    setToastId(newActivity.id)
     setSelectedId(newActivity.id)
     closeForm()
   }
@@ -111,6 +123,12 @@ function App() {
           <button onClick={() => setShowForm(true)}>+ Suggest an activity</button>
         </>
       )}
+      {toastId && (
+      <div className="toast" role="status">
+        <span>Out there! ✨</span>
+        <button onClick={undoShare}>Undo</button>
+      </div>
+)}
     </div>
   )
 }

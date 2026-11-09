@@ -126,3 +126,27 @@ input[type='text'] {
 .card h2 {
   overflow-wrap: anywhere;
 }
+.toast {
+  position: fixed;
+  left: 50%;
+  translate: -50% 0;
+  bottom: 24px;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 10px 10px 22px;
+  background: var(--ink);
+  color: #fff;
+  border-radius: 999px;
+  font-weight: 800;
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.2);
+  animation: pop 0.3s var(--bounce);
+}
+
+.toast button {
+  padding: 6px 14px;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--ink);
+}
