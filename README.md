@@ -26,22 +26,34 @@ https://www.figma.com/proto/nKmWdR5u0rOxBrIDW44xiB/Spontaneous-Plans-v2?node-id=
 
 I tested the clickable prototype with 3 people. They were able to navigate the flow and create or open an activity without assistance. 1 of the 3 wanted to suggest more creative activities, which led me to explore a "Something else ✨" option next.
 
-This was an early test with a small group, so I treat the results as an initial signal rather than proof.
+**Second round:** I showed the prototype to [number] more people, including the "Something else ✨" option. The ones who tried it found and used it. [Add what they created or typed, if you have it. Add whether anyone hesitated, if someone did.] Most of the feedback was about features they'd like, not problems using the app:
+
+- Two people asked for a filter (one for nearby plans, one for day and time).
+- One person didn't notice the confirmation after sharing until I pointed it out. Another noticed it on their own.
+- One wanted to zoom the map (the Figma prototype shows a static map, and the coded app has zoom).
+- One wanted to see who suggested a plan directly on the pin.
+- One asked how friends are added and what a profile contains.
+
+The groups are small, so I treat all of this as signals, not proof.
 
 ## Design decisions & open questions
 
 **Decisions**
 - Pins show activities at approximate places, not people's live locations. The place is chosen by tapping the map.
-- Plans are temporary: a pin disappears 4 hours after its start time. If someone picks a time that has already passed, it counts as tomorrow. This is only enforced in the browser for now.
+- Plans are temporary: a pin disappears 4 hours after its start time. A time that has already passed counts as tomorrow. This is only enforced in the browser for now.
 - Joining is a light "I'm interested" toggle, not a binding RSVP, to keep plans low-pressure.
-- Only the host can remove an activity.
-- Data is saved in the browser (localStorage), so it exists on one device only. Sharing plans between friends needs a backend.
+- Only the host sees the remove button. There are no accounts yet, so a real version needs to check ownership on the server.
+- Data is saved in the browser (localStorage) on one device. Sharing plans between friends needs a backend.
 
 **Open questions**
-- Is a "Something else ✨" option (custom activity name and emoji) worth adding? I haven't tested it yet.
-- Is the "Out there! ✨" confirmation after sharing noticeable enough? One tester only saw it after I pointed it out.
-- One tester asked for a "nearby" filter. I'm not planning it for now: it would need location access, and a small friends-only map may not need it.
-- Should a user be limited to one active activity at a time? Planned, but not tested.
+- Should friends join through an invite link or code, and what does a profile contain? A minimal idea: a nickname plus an emoji avatar, with no email or photo upload.
+- Is a filter needed (nearby, or by day and time)? Two testers asked, but a small friends-only map may not need it.
+- Should the pin show who suggested the plan?
+- Should a user be limited to one active activity at a time?
+
+**Not planned for now**
+- Notifications (they need a backend and could add pressure, which goes against "low-pressure").
+- Café and restaurant recommendations (a different product: discovery instead of plans with existing friends).
 
 ## Technology
 React, TypeScript, Vite, Leaflet with OpenStreetMap map tiles.

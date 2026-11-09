@@ -109,3 +109,20 @@ input[type='time'] {
   border: 2.5px solid var(--ink);
   background: #fff;
 }
+input[type='text'] {
+  font: inherit;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 2.5px solid var(--ink);
+  background: #fff;
+}
+
+.emoji-btn {
+  padding: 6px 10px;
+  font-size: 1.3rem;
+}
+.card h2 {
+  overflow-wrap: anywhere;
+}
