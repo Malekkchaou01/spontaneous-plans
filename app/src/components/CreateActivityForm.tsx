@@ -89,11 +89,13 @@ export default function CreateActivityForm({
       </p>
       <p>{hasLocation ? 'Place chosen 📍' : 'Tap the map to choose where.'}</p>
 
-      <button onClick={handleShare} disabled={!hasLocation || !hasTitle}>
-        Share activity
-      </button>{' '}
-      <button onClick={onCancel}>Cancel</button>
-      <p>An open invitation. No pressure to join.</p>
+      <div className="sheet-actions">
+  <button onClick={handleShare} disabled={!hasLocation || !hasTitle}>
+    Share activity
+  </button>{' '}
+  <button onClick={onCancel}>Cancel</button>
+     </div>
+     <p>An open invitation. No pressure to join.</p>
     </div>
   )
 }

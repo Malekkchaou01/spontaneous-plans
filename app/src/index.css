@@ -1,7 +1,7 @@
 :root {
   --bg: #f7f8fc;
   --mint-deep: #fff5e4;
-  --accent: #ffbc36e6;
+  --accent: #ffb04a;
   --ink: #172b24;
   --card: #ffffff;
   --radius: 28px;
@@ -14,12 +14,61 @@ body {
   background: var(--bg);
   color: var(--ink);
 }
+html,
+body {
+  height: 100%;
+}
 
 #root {
   max-width: 480px;
   margin: 0 auto;
-  padding: 16px 16px 48px;
+  height: 100vh;
+  height: 100dvh;
+  box-sizing: border-box;
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
   text-align: left;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  gap: 12px;
+}
+
+.app h1 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.map-area {
+  flex: 1;
+  min-height: 180px;
+}
+
+.map-area .leaflet-container {
+  height: 100%;
+  margin-bottom: 0;
+}
+
+.sheet {
+  flex-shrink: 0;
+  max-height: 50%;
+  overflow-y: auto;
+}
+
+.sheet .card {
+  margin-bottom: 0;
+}
+
+.sheet-actions {
+  position: sticky;
+  bottom: 0;
+  background: var(--card);
+  padding-top: 8px;
 }
 
 h1 {
@@ -130,8 +179,7 @@ input[type='text'] {
   position: fixed;
   left: 50%;
   translate: -50% 0;
-  bottom: 24px;
-  z-index: 2000;
+  bottom: calc(24px + env(safe-area-inset-bottom));  z-index: 2000;
   display: flex;
   align-items: center;
   gap: 16px;

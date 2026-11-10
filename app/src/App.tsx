@@ -94,14 +94,17 @@ function App() {
   }
 
   return (
-    <div>
-      <h1>Spontaneous Plans ✨</h1>
+  <div className="app">
+    <h1>Spontaneous Plans ✨</h1>
+    <div className="map-area">
       <MapView
         activities={visibleItems}
         onSelect={setSelectedId}
         pickedPosition={pickedPosition}
         onPickLocation={showForm ? setPickedPosition : undefined}
       />
+    </div>
+    <div className="sheet">
       {showForm ? (
         <CreateActivityForm
           hasLocation={pickedPosition !== null}
@@ -123,14 +126,15 @@ function App() {
           <button onClick={() => setShowForm(true)}>+ Suggest an activity</button>
         </>
       )}
-      {toastId && (
+    </div>
+    {toastId && (
       <div className="toast" role="status">
         <span>Out there! ✨</span>
         <button onClick={undoShare}>Undo</button>
       </div>
-)}
-    </div>
-  )
+    )}
+  </div>
+)
 }
 
 export default App
