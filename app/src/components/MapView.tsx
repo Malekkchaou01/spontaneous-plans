@@ -12,9 +12,18 @@ type MapViewProps = {
   onPickLocation?: (position: Position) => void
 }
 
-function emojiIcon(emoji: string) {
+function escapeHtml(text: string) {
+  return text.replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`)
+}
+
+function emojiIcon(emoji: string, host: string) {
+  const initial = escapeHtml(host.trim().charAt(0).toUpperCase())
   return divIcon({
-    html: `<div style="width:46px;height:46px;display:flex;align-items:center;justify-content:center;font-size:26px;background:white;border:2.5px solid #172b24;border-radius:50%;box-shadow:0 3px 0 rgba(0,0,0,0.15);">${emoji}</div>`,
+    html: `
+      <div style="position:relative;width:46px;height:46px;">
+        <div style="width:46px;height:46px;display:flex;align-items:center;justify-content:center;font-size:26px;background:white;border:2.5px solid var(--ink);border-radius:50%;box-shadow:0 3px 0 rgba(0,0,0,0.15);">${emoji}</div>
+        <div style="position:absolute;right:-6px;bottom:-6px;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;background:var(--accent);color:var(--ink);border:2px solid var(--ink);border-radius:50%;">${initial}</div>
+      </div>`,
     className: '',
     iconSize: [46, 46],
     iconAnchor: [23, 23],
@@ -60,12 +69,12 @@ export default function MapView({
         <Marker
           key={activity.id}
           position={activity.position}
-          icon={emojiIcon(activity.emoji)}
+          icon={emojiIcon(activity.emoji, activity.host)}
           eventHandlers={{ click: () => onSelect(activity.id) }}
         />
       ))}
       {pickedPosition && (
-  <Marker position={pickedPosition} icon={pinIcon()} />
+        <Marker position={pickedPosition} icon={pinIcon()} />
       )}
     </MapContainer>
   )
