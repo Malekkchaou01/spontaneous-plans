@@ -50,10 +50,12 @@ The groups are small, so I treat all of this as signals, not proof.
 - Is a filter needed (nearby, or by day and time)? Two testers asked, but a small friends-only map may not need it.
 - Should the pin show who suggested the plan?
 - Should a user be limited to one active activity at a time?
+- Can a nickname be changed? Friends find you by an exact name, so changes need rules (unique names, limited frequency).
 
 **Not planned for now**
 - Notifications (they need a backend and could add pressure, which goes against "low-pressure").
 - Café and restaurant recommendations (a different product: discovery instead of plans with existing friends).
+History of past plans (plans are meant to be temporary)
 
 ## Technology
 React, TypeScript, Vite, Leaflet with OpenStreetMap map tiles.
@@ -89,3 +91,13 @@ Sample data only. data is stored locally in the browser only.
 
 ![An activity I shared](docs/images/app/05-my-activity.png)
 *An activity I shared: as the host I can remove it, and it disappears 4 hours after its start time.*
+
+## Design iterations
+
+**v2 (in progress):** a visual refresh, plus the screens for friends and profiles.
+
+![Create profile](docs/images/v2/01-create-profile.png)
+*First launch: a nickname and a character avatar, with no email or photo.*
+
+![Friends list](docs/images/v2/03-friends-list.png)
+*The friends list is the hub for requests, invite links and search.*
