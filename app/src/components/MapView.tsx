@@ -58,7 +58,7 @@ export default function MapView({
     <MapContainer
       center={[51.2277, 6.7735]}
       zoom={14}
-      style={{ height: '400px', width: '100%' }}
+      style={{ height: '100%', width: '100%' }}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
