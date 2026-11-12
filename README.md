@@ -101,3 +101,5 @@ Sample data only. data is stored locally in the browser only.
 
 ![Friends list](docs/images/v2/03-friends-list.png)
 *The friends list is the hub for requests, invite links and search.*
+
+**Live demo:** https://spontaneous-plans.netlify.app (sample data, stored only in your browser)
